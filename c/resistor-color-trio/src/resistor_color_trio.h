@@ -1,8 +1,6 @@
 #ifndef RESISTOR_COLOR_TRIO_H
 #define RESISTOR_COLOR_TRIO_H
 
-#endif
-
 typedef enum {
     BLACK,
     BROWN,
@@ -28,3 +26,5 @@ typedef struct {
 } resistor_value_t;
 
 resistor_value_t color_code(resistor_band_t* color);
+
+#endif
