@@ -1,6 +1,7 @@
 #include "pangram.h"
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 #define ALPHABET_SIZE 26
 
 void register_letters(const char *sentence, int *alphabets);
@@ -14,16 +15,10 @@ bool is_pangram(const char *sentence) {
 }
 
 void register_letters(const char *sentence, int *alphabets) {
-    unsigned long i;
-    int letter;
-    for (i = 0; i < strlen(sentence); i++) {
-        letter = (int)sentence[i];
-        if ((letter >= 65 && letter <= 90) || (letter >= 97 && letter <= 122)) {
-            if (letter >= 65 && letter <= 90) letter -= 65;
-            if (letter >= 97 && letter <= 122) letter -= 97;
-
-            alphabets[letter] = true;
-        }
+    const char* dup = sentence;
+    while (!*dup) {
+       const char letter = tolower(*dup); 
+       if (letter >= 'a' && letter <= 'z') alphabets[(int)letter] = true; 
     }
 }
 
@@ -34,3 +29,27 @@ bool check_alphabets(int *alphabets) {
     }
     return true;
 }
+
+// #include <string.h>
+// #include <ctype.h>
+
+// #include "pangram.h"
+
+// bool is_pangram(const char *sentence) {
+//     if (sentence == NULL) return false;
+
+//     int seen[25] = {0};
+//     const char *tmp = sentence;
+//     while (*tmp != '\0') {
+//         const char curr = tolower(*tmp);
+//         if (curr >= 'a' && curr <= 'z') {
+//             seen[curr - 'a']++;
+//         }
+//         tmp++;
+//     }
+    
+//     for (int i = 0; i < 25; i++) {
+//         if (seen[i] == 0) return false;
+//     }
+//     return true;
+// }
