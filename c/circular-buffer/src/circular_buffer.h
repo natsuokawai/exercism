@@ -6,6 +6,8 @@
 typedef int buffer_value_t;
 typedef struct {
     buffer_value_t *body;
+    int *written;
+    int current;
     size_t capacity;
 } circular_buffer_t;
 typedef int int16_t;
